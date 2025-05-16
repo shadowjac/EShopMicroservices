@@ -4,7 +4,7 @@ internal record CreateProductRequest(
     string Name,
     List<string> Category,
     string Description,
-    string ImageUrl,
+    string ImageFile,
     decimal Price);
 
 internal record CreateProductResponse(Guid Id);

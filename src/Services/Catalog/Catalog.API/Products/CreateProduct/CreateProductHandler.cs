@@ -25,7 +25,7 @@ internal sealed class CreateProductHandler :  ICommandHandler<CreateProductComma
 
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Creating product {Name}", command.Name);
+        _logger.LogInformation("CreateProductCommandHandler.Handle called with {@Command}", command);
         
         Product product = new()
         {
