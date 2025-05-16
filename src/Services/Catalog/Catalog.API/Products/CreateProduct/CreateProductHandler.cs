@@ -14,16 +14,19 @@ internal record CreateProductResult(Guid Id);
 
 internal sealed class CreateProductHandler :  ICommandHandler<CreateProductCommand, CreateProductResult>
 {
+    private readonly IDocumentSession _session;
     private readonly ILogger<CreateProductHandler> _logger;
 
-    public CreateProductHandler(ILogger<CreateProductHandler> logger)
+    public CreateProductHandler(IDocumentSession session, ILogger<CreateProductHandler> logger)
     {
         _logger = logger;
+        _session = session;
     }
 
-    public Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
+    public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Creating product {Name}", command.Name);
+        
         Product product = new()
         {
             Name = command.Name,
@@ -33,9 +36,9 @@ internal sealed class CreateProductHandler :  ICommandHandler<CreateProductComma
             Price = command.Price
         };
         
-        // 2. save to database
-        // 3. return result
+        _session.Store(product);
+        await _session.SaveChangesAsync(cancellationToken);
         
-        return Task.FromResult(new CreateProductResult(product.Id));
+        return new CreateProductResult(product.Id);
     }
 }
