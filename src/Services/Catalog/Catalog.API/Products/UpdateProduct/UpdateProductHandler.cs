@@ -13,6 +13,20 @@ public record UpdateProductCommand(Guid Id,
     decimal Price,
     string ImageFile) : ICommand<UpdateProductResult>;
 
+public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
+{
+    public UpdateProductCommandValidator()
+    {
+        RuleFor(x => x.Id).NotEmpty()
+            .WithMessage("Product Id is required");
+        RuleFor(x => x.Name).NotEmpty()
+            .WithMessage("Name is required")
+            .Length(2, 150).WithMessage("Name must have between 2 and 150 characters");
+        RuleFor(x => x.Price).GreaterThan(0)
+            .WithMessage("Price must be greater than 0");
+    }
+}
+
 internal sealed class UpdateProductHandler : ICommandHandler<UpdateProductCommand, UpdateProductResult>
 {
     private readonly IDocumentSession _session;
@@ -29,7 +43,7 @@ internal sealed class UpdateProductHandler : ICommandHandler<UpdateProductComman
         _logger.LogInformation("UpdateProductHandler.Handle: called with {@Command}", command);
         
         var product = await _session.LoadAsync<Product>(command.Id, cancellationToken) ?? throw new ProductNotFoundException(command.Id);
-        
+
         product.Name = command.Name;
         product.Category = command.Category;
         product.Description = command.Description;

@@ -3,7 +3,7 @@ using Catalog.API.Models;
 
 namespace Catalog.API.Products.CreateProduct;
 
-internal record CreateProductCommand(string Name,
+public record CreateProductCommand(string Name,
     List<string> Category,
     string Description,
     string ImageFile,
@@ -12,21 +12,27 @@ internal record CreateProductCommand(string Name,
 
 internal record CreateProductResult(Guid Id);
 
+public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
+{
+    public CreateProductCommandValidator()
+    {
+        RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required");
+        RuleFor(x => x.Category).NotEmpty().WithMessage("Category is required");
+        RuleFor(x => x.ImageFile).NotEmpty().WithMessage("ImageFile is required");
+        RuleFor(x => x.Price).NotEmpty().WithMessage("Price is required");
+    }
+}
+
 internal sealed class CreateProductHandler :  ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     private readonly IDocumentSession _session;
-    private readonly ILogger<CreateProductHandler> _logger;
-
-    public CreateProductHandler(IDocumentSession session, ILogger<CreateProductHandler> logger)
+    public CreateProductHandler(IDocumentSession session)
     {
-        _logger = logger;
         _session = session;
     }
 
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("CreateProductCommandHandler.Handle called with {@Command}", command);
-        
         Product product = new()
         {
             Name = command.Name,
