@@ -402,3 +402,6 @@ FodyWeavers.xsd
 
 # jetBrains IDE
 .idea/
+src/Services/Discount/Discount.Grpc/discountdb-wal
+src/Services/Discount/Discount.Grpc/discountdb-shm
+src/Services/Discount/Discount.Grpc/discountdb
