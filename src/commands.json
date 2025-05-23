@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/dotnetcli.host.json",
+  "commands": {
+    "eShop-up": {
+      "description": "Start Docker Compose services",
+      "workingDirectory": ".",
+      "command": "docker-compose up -d"
+    },
+    "eShop-down": {
+      "description": "Stop and remove Docker Compose services",
+      "workingDirectory": ".",
+      "command": "docker-compose down"
+    },
+    "eShop-restart": {
+      "description": "Restart Docker Compose services (down + up)",
+      "workingDirectory": ".",
+      "command": "docker-compose down && docker-compose up -d"
+    }
+  }
+}
