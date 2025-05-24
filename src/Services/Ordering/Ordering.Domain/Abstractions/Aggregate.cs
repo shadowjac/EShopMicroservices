@@ -1,6 +1,6 @@
 ﻿namespace Ordering.Domain.Abstractions;
 
-public abstract class Aggregate<TId> : Entity<TId>, IAggregate<TId>
+public abstract class Aggregate<TId> : Entity<TId>, IAggregate<TId> where TId : notnull
 {
     private readonly List<IDomainEvent> _domainEvents = [];
 
