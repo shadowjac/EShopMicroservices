@@ -2,6 +2,7 @@
 
 public record ProductId
 {
+    private ProductId() { }
     private ProductId(Guid value) => Value = value;
     
     public static ProductId Of(Guid value)

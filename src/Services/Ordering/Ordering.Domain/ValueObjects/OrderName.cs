@@ -4,6 +4,8 @@ public record OrderName
 {
     private const int DefaultLength = 5;
     
+    private OrderName() { }
+    
     private OrderName(string value) => Value = value;
 
     public static OrderName Of(string value)
@@ -13,5 +15,5 @@ public record OrderName
         return new OrderName(value);
     }
 
-    public string Value { get; }
+    public string Value { get; } = default!;
 }

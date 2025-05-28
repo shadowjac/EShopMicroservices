@@ -2,6 +2,8 @@
 
 public record Address
 {
+    private Address() { }
+    
     private Address(string firstName,
         string lastName,
         string emailAddress,
