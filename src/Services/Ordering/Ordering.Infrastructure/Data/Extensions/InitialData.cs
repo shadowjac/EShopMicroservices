@@ -34,8 +34,8 @@ internal static class InitialData
                 payment1
             );
             
-            order1.AddOrderItem(ProductId.Of(new Guid("71A732BD-0855-4F10-9D6E-1851CFE6E4D2")), 500, 2);
-            order1.AddOrderItem(ProductId.Of(new Guid("71A732BD-0855-4F10-9D6E-1851CFE6E4D3")), 200, 1);
+            order1.AddItem(ProductId.Of(new Guid("71A732BD-0855-4F10-9D6E-1851CFE6E4D2")), 500, 2);
+            order1.AddItem(ProductId.Of(new Guid("71A732BD-0855-4F10-9D6E-1851CFE6E4D3")), 200, 1);
             
             var order2 = Order.Create(
                 OrderId.Of(new Guid("71A732BD-0855-4F10-9D6E-1851CFE6E4D6")),
@@ -45,8 +45,8 @@ internal static class InitialData
                 billingAddress: address1,
                 payment2
             );
-            order2.AddOrderItem(ProductId.Of(new Guid("71A732BD-0855-4F10-9D6E-1851CFE6E4D4")), 200, 1);
-            order2.AddOrderItem(ProductId.Of(new Guid("71A732BD-0855-4F10-9D6E-1851CFE6E4D2")), 1200, 1);
+            order2.AddItem(ProductId.Of(new Guid("71A732BD-0855-4F10-9D6E-1851CFE6E4D4")), 200, 1);
+            order2.AddItem(ProductId.Of(new Guid("71A732BD-0855-4F10-9D6E-1851CFE6E4D2")), 1200, 1);
             
             return [order1, order2];
         }

@@ -62,7 +62,7 @@ public class Order : Aggregate<OrderId>
         AddDomainEvent(new OrderUpdatedEvent(this));
     }
 
-    public void AddOrderItem(ProductId productId, decimal price, int quantity)
+    public void AddItem(ProductId productId, decimal price, int quantity)
     {
         ArgumentNullException.ThrowIfNull(productId);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
@@ -72,7 +72,7 @@ public class Order : Aggregate<OrderId>
         _orderItems.Add(orderItem);
     }
 
-    public void RemoveOrderItem(ProductId productId)
+    public void RemoveItem(ProductId productId)
     {
         ArgumentNullException.ThrowIfNull(productId);
 
