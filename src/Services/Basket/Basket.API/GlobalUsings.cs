@@ -1,6 +1,7 @@
 ﻿// Global using directives
 
 global using Basket.API.Data;
+global using Basket.API.Dtos;
 global using Basket.API.Models;
 global using BuildingBlocks.Behaviors;
 global using BuildingBlocks.CQRS;

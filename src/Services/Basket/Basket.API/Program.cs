@@ -1,3 +1,4 @@
+using BuildingBlocks.Messaging.MassTransit;
 using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -42,7 +43,8 @@ builder.Services.AddHealthChecks()
 builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(opts =>
 {
     opts.Address = new Uri(builder.Configuration.GetValue<string>("GrpcSettings:DiscountUrl")!);
-});/*.ConfigurePrimaryHttpMessageHandler(() =>
+});
+/*.ConfigurePrimaryHttpMessageHandler(() =>
 {
     var handler = new HttpClientHandler()
     {
@@ -50,6 +52,8 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
     };
     return handler;
 });*/
+
+builder.Services.AddMessageBroker(builder.Configuration);
 
 // ---------------------------------------
 

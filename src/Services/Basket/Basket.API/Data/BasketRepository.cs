@@ -11,7 +11,7 @@ public sealed class BasketRepository : IBasketRepository
         _session = session;
     }
 
-    public async Task<ShoppingCart> GetBasketAsync(string userName, CancellationToken cancellationToken = default)
+    public async Task<ShoppingCart?> GetBasketAsync(string userName, CancellationToken cancellationToken = default)
     {
         var basket = await _session.LoadAsync<ShoppingCart>(userName, cancellationToken);
         return basket ?? throw new BasketNotFoundException(userName);

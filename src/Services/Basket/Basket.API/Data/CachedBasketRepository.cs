@@ -11,7 +11,7 @@ public class CachedBasketRepository : IBasketRepository
         _cache = cache;
     }
     
-    public async Task<ShoppingCart> GetBasketAsync(string userName, CancellationToken cancellationToken = default)
+    public async Task<ShoppingCart?> GetBasketAsync(string userName, CancellationToken cancellationToken = default)
     {
         var cachedBasket = await _cache.GetStringAsync(userName, cancellationToken);
         if (!string.IsNullOrEmpty(cachedBasket))
