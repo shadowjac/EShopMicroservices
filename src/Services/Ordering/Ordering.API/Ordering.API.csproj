@@ -4,6 +4,8 @@
 
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <UserSecretsId>dc5ac152-3164-4d88-8476-a0dc632c688e</UserSecretsId>
+        <DockerfileContext>..\..\..</DockerfileContext>
+        <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,7 +17,7 @@
     <ItemGroup>
         <PackageReference Include="AspNetCore.HealthChecks.SqlServer" />
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
-        <PackageReference Include="Carter"/>
+        <PackageReference Include="Carter" />
     </ItemGroup>
 
     <ItemGroup>
@@ -23,10 +25,11 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Ordering.Infrastructure\Ordering.Infrastructure.csproj"/>
+        <ProjectReference Include="..\Ordering.Infrastructure\Ordering.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

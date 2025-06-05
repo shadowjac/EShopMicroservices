@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Ordering.Application.Orders.EventHandlers;
+namespace Ordering.Application.Orders.EventHandlers.Domain;
 
 public class OrderUpdatedEventHandler : INotificationHandler<OrderUpdatedEvent>
 {
